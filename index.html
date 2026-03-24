@@ -78,6 +78,61 @@
         </div>
     </div>
 
+    <!-- GALLERY BUTTON -->
+    <div class="gallery-btn" id="galleryBtn" onclick="openGallery()" title="Concept Renders">
+        <svg viewBox="0 0 24 24">
+            <rect x="3" y="3" width="18" height="18" rx="2"/>
+            <circle cx="8.5" cy="8.5" r="1.5"/>
+            <path d="M21 15l-5-5L5 21"/>
+        </svg>
+        <span class="gallery-btn-label">Gallery</span>
+        <span class="gallery-btn-pulse"></span>
+    </div>
+
+    <!-- GALLERY OVERLAY -->
+    <div id="galleryOverlay">
+        <button class="gallery-close" onclick="closeGallery()">&times;</button>
+        <div class="gallery-container">
+            <div class="gallery-header">
+                <div class="eyebrow">Concept Renders</div>
+                <h2>Architectural Vision</h2>
+                <p>AI-generated concept renders of the Donyo Sabuk Avenue development</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-thumb" onclick="viewImage(0)">
+                    <img src="Gemini_Generated_Image_1sz00o1sz00o1sz0.png" alt="Aerial view of Donyo Sabuk Avenue" loading="lazy">
+                    <div class="gallery-thumb-overlay">
+                        <span class="gallery-thumb-title">Aerial View</span>
+                        <span class="gallery-thumb-sub">Bird's-eye perspective of the twin towers</span>
+                    </div>
+                </div>
+                <div class="gallery-thumb" onclick="viewImage(1)">
+                    <img src="Gemini_Generated_Image_7i40p17i40p17i40.png" alt="Front perspective of Donyo Sabuk Avenue" loading="lazy">
+                    <div class="gallery-thumb-overlay">
+                        <span class="gallery-thumb-title">Front Perspective</span>
+                        <span class="gallery-thumb-sub">Street-level view with landscaping and river</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- IMAGE LIGHTBOX -->
+    <div id="imageLightbox">
+        <button class="lb-close" onclick="closeLightbox()">&times;</button>
+        <button class="lb-nav lb-prev" onclick="navImage(-1)">
+            <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <button class="lb-nav lb-next" onclick="navImage(1)">
+            <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+        <div class="lb-img-wrap">
+            <img id="lbImg" src="" alt="">
+        </div>
+        <div class="lb-caption" id="lbCaption"></div>
+        <div class="lb-counter" id="lbCounter"></div>
+    </div>
+
     <!-- FLOOR PLAN MAP ICON -->
     <div class="fp-map-btn" id="fpMapBtn" title="Floor Plans">
         <svg viewBox="0 0 24 24">

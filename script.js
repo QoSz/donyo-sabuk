@@ -2251,5 +2251,61 @@ function makeMesh(geo, mat) {
     return m;
 }
 
+// ══════ GALLERY & LIGHTBOX ══════
+const galleryImages = [
+    { src: 'Gemini_Generated_Image_1sz00o1sz00o1sz0.png', title: 'Aerial View', desc: 'Bird\'s-eye perspective of the twin towers with pool and amenities' },
+    { src: 'Gemini_Generated_Image_7i40p17i40p17i40.png', title: 'Front Perspective', desc: 'Street-level view with landscaping and river' }
+];
+let currentLbIndex = 0;
+
+function openGallery() {
+    document.getElementById('galleryOverlay').classList.add('show');
+}
+
+function closeGallery() {
+    document.getElementById('galleryOverlay').classList.remove('show');
+}
+
+function viewImage(index) {
+    currentLbIndex = index;
+    const img = galleryImages[index];
+    const lbImg = document.getElementById('lbImg');
+    lbImg.src = img.src;
+    lbImg.alt = img.title;
+    document.getElementById('lbCaption').textContent = img.title + ' — ' + img.desc;
+    document.getElementById('lbCounter').textContent = (index + 1) + ' / ' + galleryImages.length;
+    document.getElementById('imageLightbox').classList.add('show');
+}
+
+function closeLightbox() {
+    document.getElementById('imageLightbox').classList.remove('show');
+}
+
+function navImage(dir) {
+    currentLbIndex = (currentLbIndex + dir + galleryImages.length) % galleryImages.length;
+    const img = galleryImages[currentLbIndex];
+    const lbImg = document.getElementById('lbImg');
+    lbImg.style.opacity = '0';
+    setTimeout(() => {
+        lbImg.src = img.src;
+        lbImg.alt = img.title;
+        document.getElementById('lbCaption').textContent = img.title + ' — ' + img.desc;
+        document.getElementById('lbCounter').textContent = (currentLbIndex + 1) + ' / ' + galleryImages.length;
+        lbImg.style.opacity = '1';
+    }, 150);
+}
+
+document.addEventListener('keydown', function(e) {
+    const lb = document.getElementById('imageLightbox');
+    const gal = document.getElementById('galleryOverlay');
+    if (lb.classList.contains('show')) {
+        if (e.key === 'Escape') closeLightbox();
+        else if (e.key === 'ArrowLeft') navImage(-1);
+        else if (e.key === 'ArrowRight') navImage(1);
+    } else if (gal.classList.contains('show')) {
+        if (e.key === 'Escape') closeGallery();
+    }
+});
+
 // Boot
 init();
